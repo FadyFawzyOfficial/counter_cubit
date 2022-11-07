@@ -1,3 +1,4 @@
+import 'package:counter_cubit/other_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -30,10 +31,29 @@ class MyHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: BlocBuilder<CounterCubit, CounterState>(
-          builder: (context, state) => Text(
-            '${state.counter}',
-            style: const TextStyle(fontSize: 100),
+        child: BlocListener<CounterCubit, CounterState>(
+          listener: (context, state) {
+            if (state.counter == 3) {
+              showDialog(
+                context: context,
+                builder: (_) => AlertDialog(
+                  content: Text('counter is ${state.counter}'),
+                ),
+              );
+            } else if (state.counter == -1) {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => const OtherScreen(),
+                ),
+              );
+            }
+          },
+          child: BlocBuilder<CounterCubit, CounterState>(
+            builder: (context, state) => Text(
+              '${state.counter}',
+              style: const TextStyle(fontSize: 100),
+            ),
           ),
         ),
       ),
