@@ -31,7 +31,7 @@ class MyHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: BlocListener<CounterCubit, CounterState>(
+        child: BlocConsumer<CounterCubit, CounterState>(
           listener: (context, state) {
             if (state.counter == 3) {
               showDialog(
@@ -49,11 +49,9 @@ class MyHomePage extends StatelessWidget {
               );
             }
           },
-          child: BlocBuilder<CounterCubit, CounterState>(
-            builder: (context, state) => Text(
-              '${state.counter}',
-              style: const TextStyle(fontSize: 100),
-            ),
+          builder: (context, state) => Text(
+            '${state.counter}',
+            style: const TextStyle(fontSize: 100),
           ),
         ),
       ),
