@@ -12,7 +12,39 @@ class MyApp extends StatelessWidget {
       title: 'Counter Cubit',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(primarySwatch: Colors.blue),
-      home: Container(),
+      home: const MyHomePage(),
+    );
+  }
+}
+
+class MyHomePage extends StatelessWidget {
+  const MyHomePage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: const Center(
+        child: Text(
+          '0',
+          style: TextStyle(fontSize: 100),
+        ),
+      ),
+      floatingActionButton: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          FloatingActionButton(
+            onPressed: () {},
+            heroTag: 'decrement',
+            child: const Icon(Icons.remove_rounded),
+          ),
+          const SizedBox(width: 16),
+          FloatingActionButton(
+            onPressed: () {},
+            heroTag: 'increment',
+            child: const Icon(Icons.add_rounded),
+          ),
+        ],
+      ),
     );
   }
 }
